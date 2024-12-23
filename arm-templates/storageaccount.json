@@ -24,7 +24,7 @@
     "functions": [],
     "variables": {},
     "resources": [
-        {   "name": "Storageaccount1",
+        {   "name": "[parameters('storageAccountName')]",
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2019-06-01",            
             "tags":{
