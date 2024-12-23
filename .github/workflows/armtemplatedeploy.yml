@@ -35,5 +35,8 @@ jobs:
           resourceGroupName: rg-githubactions
           subscriptionId: 6d17e2f4-4477-45be-b793-af8cfeea80c6          
           template: ./arm-templates/storageaccount.json
-          parameters: ./arm-templates/storageaccount.parameters.json
-          deploymentMode: Incremental 
+          parameters: >
+            ./arm-templates/storageaccount.parameters.json
+            storageAccountName=githubactionsstorage25
+            location=swedencentral
+          deploymentMode: Incremental
