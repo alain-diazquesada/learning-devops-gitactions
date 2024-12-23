@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "storageAccountName": {
-            "value": "githubactionsstorage" 
+            "value": "githubactionsstorage24" 
         },
         "location": {
             "value": "Sweden Central" 
