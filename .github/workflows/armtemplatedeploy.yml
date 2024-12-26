@@ -52,7 +52,7 @@ jobs:
           resourceGroupName: rg-githubactions
           subscriptionId: 6d17e2f4-4477-45be-b793-af8cfeea80c6          
           template: ./arm-templates/virtualmachine.json
-          parameters: ./arm-templates/virtualmachine.parameters.json
-          #deploymentMode:            
+          parameters: ./arm-templates/virtualmachine.parameters.json adminPassword=${{ secrets.UBUNTU_ADMIN_PASSWORD }}
+          deploymentMode: Incremental
 
         
