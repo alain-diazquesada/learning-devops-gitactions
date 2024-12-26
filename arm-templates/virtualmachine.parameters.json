@@ -1,0 +1,30 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "adminPassword": {
+            "value": "My$ecureP@ssword123" // TODO: Fill in parameter value
+        },
+        "vmName": {
+            "value": "vmtest1" // TODO: Fill in parameter value
+        },
+        "location": {
+            "value": "swedenCentral"
+        },
+        "vmSize": {
+            "value": "Standard_B1s" // Small general size VM
+        },
+        "imagePublisher": {
+            "value": "Canonical" // TODO: Fill in parameter value
+        },
+        "imageOffer": {
+            "value": "UbuntuServer" // TODO: Fill in parameter value
+        },
+        "imageSku": {
+            "value": "18.04-LTS" // TODO: Fill in parameter value
+        },
+        "nicName": {
+            "value": "testvm" // TODO: Fill in parameter value
+        }
+    }
+}
