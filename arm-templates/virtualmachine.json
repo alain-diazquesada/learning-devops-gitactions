@@ -30,16 +30,13 @@
         },
         "imageSku": {
             "type": "string"
-        },
-        "nicName": {
-            "type": "string"
         }
+        
     },
     "functions": [],
     "variables": {
         "networkInterfaceName": "[concat(parameters('vmName'), '-nic')]",
-        "networkSecurityGroupName": "[concat(parameters('vmName'), '-nsg')]",
-        "networkSecurityGroupName2": "[concat(parameters('vmName'), '-nsg2')]",
+        "networkSecurityGroupName": "[concat(parameters('vmName'), '-nsg')]",        
         "vNetName": "[concat(parameters('vmName'), '-vnet')]",
         "vNetAddressPrefixes": "10.0.0.0/16",
         "vNetSubnetName": "default",
@@ -69,39 +66,16 @@
                     }
                 ]
             }
-        },       
-        {
-            "comments": "Simple Network Security Group for subnet [variables('vNetSubnetName')]",
-            "type": "Microsoft.Network/networkSecurityGroups",
-            "apiVersion": "2024-03-01",
-            "name": "[variables('networkSecurityGroupName2')]",
-            "location": "[parameters('location')]",
-            "properties": {
-                "securityRules": [
-                    {
-                        "name": "default-allow-22",
-                        "properties": {
-                            "priority": 1000,
-                            "access": "Allow",
-                            "direction": "Inbound",
-                            "destinationPortRange": "22",
-                            "protocol": "Tcp",
-                            "sourceAddressPrefix": "*",
-                            "sourcePortRange": "*",
-                            "destinationAddressPrefix": "*"
-                        }
-                    }
-                ]
-            }
-        },
+        },      
+        
         {
             "type": "Microsoft.Network/virtualNetworks",
             "apiVersion": "2024-03-01",
             "name": "[variables('vNetName')]",
             "location": "[parameters('location')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName2'))]"
-            ],
+            "dependsOn": [  
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
+                     ],
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
@@ -112,10 +86,8 @@
                     {
                         "name": "[variables('vNetSubnetName')]",
                         "properties": {
-                            "addressPrefix": "[variables('vNetSubnetAddressPrefix')]",
-                            "networkSecurityGroup": {
-                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName2'))]"
-                            }
+                            "addressPrefix": "[variables('vNetSubnetAddressPrefix')]"
+                            
                         }
                     }
                 ]
@@ -124,7 +96,7 @@
         {
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2024-03-01",
-            "name": "[parameters('nicName')]",
+            "name": "[variables('networkInterfaceName')]",
             "location": "[parameters('location')]",
             "dependsOn": [                
                 "[resourceId('Microsoft.Network/virtualNetworks', variables('vNetName'))]",

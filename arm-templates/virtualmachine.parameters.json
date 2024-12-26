@@ -22,9 +22,7 @@
         },
         "imageSku": {
             "value": "18.04-LTS" // TODO: Fill in parameter value
-        },
-        "nicName": {
-            "value": "nic-testvm" // TODO: Fill in parameter value
         }
+        
     }
 }
