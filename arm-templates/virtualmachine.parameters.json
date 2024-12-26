@@ -24,7 +24,7 @@
             "value": "18.04-LTS" // TODO: Fill in parameter value
         },
         "nicName": {
-            "value": "testvm" // TODO: Fill in parameter value
+            "value": "nic-testvm" // TODO: Fill in parameter value
         }
     }
 }

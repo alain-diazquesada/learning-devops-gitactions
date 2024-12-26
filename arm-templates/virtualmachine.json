@@ -124,7 +124,7 @@
         {
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2024-03-01",
-            "name": "[variables('networkInterfaceName')]",
+            "name": "[parameters('nicName')]",
             "location": "[parameters('location')]",
             "dependsOn": [                
                 "[resourceId('Microsoft.Network/virtualNetworks', variables('vNetName'))]",
