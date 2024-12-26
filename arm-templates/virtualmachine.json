@@ -30,8 +30,11 @@
         },
         "imageSku": {
             "type": "string"
+        },
+        "nicName": {
+            "type": "string",
+            "defaultValue": "[concat(parameters('vmName'), '-nic')]"
         }
-        
     },
     "functions": [],
     "variables": {
