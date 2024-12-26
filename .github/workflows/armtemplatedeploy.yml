@@ -3,9 +3,9 @@
 name: armtemplatedeploy
 
 on: 
-  push:
-    branches:
-      - main
+  #push:
+    #branches:
+      #- main
   workflow_dispatch:
 
 jobs:
@@ -43,6 +43,6 @@ jobs:
             ./arm-templates/storageaccount.parameters.json
             storageAccountName=githubactionsstorage25
             location=swedencentral
-          deploymentMode: Incremental
+          #deploymentMode: 
 
-      - run: echo "The storage account name is ${{ steps.storageAccountDeploy.outputs.BlobUri }}"    
+        
