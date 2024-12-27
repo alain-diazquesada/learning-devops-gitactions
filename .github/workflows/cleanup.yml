@@ -1,28 +1,23 @@
 name: Cleanup
 
 on:
-    push:
-        branches:
-            - main
+  workflow_dispatch:
+
+env:
+  resourceGroupName: rg-githubactions   
+  location: swedencentral
+  SubscriptionId: 6d17e2f4-4477-45be-b793-af8cfeea80c6
 
 jobs:
-    cleanup:
-        runs-on: ubuntu-latest
+  cleanup:
+    runs-on: ubuntu-latest
 
-        steps:
-          - name: Checkout repository
-            uses: actions/checkout@v2
+    steps:
+      - name: Azure Login
+        uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-          - name: Set up Python
-            uses: actions/setup-python@v2
-            with:
-              python-version: '3.x'
-
-          - name: Install dependencies
-            run: |
-              python -m pip install --upgrade pip
-              pip install -r requirements.txt
-
-          - name: Run cleanup script
-            run: |
-              python cleanup_script.py
+      - name: Delete Resource Group ${{ env.resourceGroupName }}
+        run: |
+          az group delete --name ${{ env.resourceGroupName }} --yes --no-wait
