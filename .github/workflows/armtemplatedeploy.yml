@@ -8,6 +8,11 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  resourceGroupName: rg-githubactions   
+  location: swedencentral
+  SubscriptionId: 6d17e2f4-4477-45be-b793-af8cfeea80c6
+
 jobs:
   armDeploy:
     runs-on: ubuntu-latest
@@ -19,38 +24,38 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Deploy Resource Group rg-githubactions
+      - name: Deploy Resource Group ${{ env.resourceGroupName }}
         uses: Azure/arm-deploy@v1
         with:
           scope: subscription
-          subscriptionId: 6d17e2f4-4477-45be-b793-af8cfeea80c6
-          region: swedencentral
+          subscriptionId: ${{ env.SubscriptionId }}
+          region: ${{ env.location }}
           template: ./arm-templates/resourcegroup.json
           parameters: >
-            location="Sweden Central"
-            resourceGroupName=rg-githubactions
-          deploymentName: rg-githubactions
+            location=${{ env.location}}
+            resourceGroupName=${{ env.resourceGroupName }}
+          deploymentName: ${{ env.resourceGroupName }}
 
       #- name: Deploy Storage Account sa-githubactions
         #uses: Azure/arm-deploy@v1
         #id: storageAccountDeploy
         #with:
           #scope: resourcegroup
-          #resourceGroupName: rg-githubactions
-          #subscriptionId: 6d17e2f4-4477-45be-b793-af8cfeea80c6          
+          #resourceGroupName: ${{ env.resourceGroupName }}
+          #subscriptionId: ${{ env.SubscriptionId}}          
           #template: ./arm-templates/storageaccount.json
           #parameters: >
             #./arm-templates/storageaccount.parameters.json
             #storageAccountName=githubactionsstorage25
-            #location=swedencentral
+            #location=${{ env.location}}
           ##deploymentMode:
             
       - name: Deploy Virtual Machine
         uses: Azure/arm-deploy@v1        
         with:
           scope: resourcegroup
-          resourceGroupName: rg-githubactions
-          subscriptionId: 6d17e2f4-4477-45be-b793-af8cfeea80c6          
+          resourceGroupName: ${{ env.resourceGroupName }}
+          subscriptionId: ${{ env.SubscriptionId}}          
           template: ./arm-templates/virtualmachine.json
           parameters: ./arm-templates/virtualmachine.parameters.json adminPassword=${{ secrets.UBUNTU_ADMIN_PASSWORD }}
           deploymentMode: Incremental
