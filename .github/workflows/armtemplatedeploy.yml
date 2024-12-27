@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       resourceGroupName: rg-prd-githubactions   
-      location: sweden south
+      location: swedensouth
     environment:
       name: production
         
