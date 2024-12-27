@@ -4,8 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  resourceGroupName: rg-githubactions   
-  location: swedencentral
+  resourceGroupName: rg-githubactions  
   SubscriptionId: 6d17e2f4-4477-45be-b793-af8cfeea80c6
 
 jobs:

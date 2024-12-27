@@ -3,28 +3,28 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "adminPassword": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "" 
         },
         "vmName": {
-            "value": "vmtest1" // TODO: Fill in parameter value
+            "value": "vmtest1" 
         },
         "location": {
             "value": "swedenCentral"
         },
         "vmSize": {
-            "value": "Standard_B1s" // Small general size VM
+            "value": "Standard_B1s" 
         },
         "imagePublisher": {
-            "value": "Canonical" // TODO: Fill in parameter value
+            "value": "Canonical" 
         },
         "imageOffer": {
-            "value": "UbuntuServer" // TODO: Fill in parameter value
+            "value": "UbuntuServer" 
         },
         "imageSku": {
-            "value": "18.04-LTS" // TODO: Fill in parameter value
+            "value": "18.04-LTS" 
         },
         "nicName": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "" 
         }
     }
 }
