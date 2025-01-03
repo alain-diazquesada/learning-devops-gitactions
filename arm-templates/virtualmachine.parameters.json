@@ -21,7 +21,7 @@
             "value": "UbuntuServer" 
         },
         "imageSku": {
-            "value": "22.04-LTS" 
+            "value": "22.04" 
         },
         "nicName": {
             "value": "" 
