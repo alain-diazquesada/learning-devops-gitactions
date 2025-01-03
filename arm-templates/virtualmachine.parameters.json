@@ -6,7 +6,7 @@
             "value": "" 
         },
         "vmName": {
-            "value": "vmtest1" 
+            "value": "c1-cp1" 
         },
         "location": {
             "value": "swedenCentral"
@@ -21,7 +21,7 @@
             "value": "UbuntuServer" 
         },
         "imageSku": {
-            "value": "18.04-LTS" 
+            "value": "22.04-LTS" 
         },
         "nicName": {
             "value": "" 

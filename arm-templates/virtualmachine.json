@@ -40,9 +40,9 @@
         "networkInterfaceName": "[concat(parameters('vmName'), '-nic')]",
         "networkSecurityGroupName": "[concat(parameters('vmName'), '-nsg')]",        
         "vNetName": "[concat(parameters('vmName'), '-vnet')]",
-        "vNetAddressPrefixes": "10.0.0.0/16",
+        "vNetAddressPrefixes": "172.16.94.0/16",
         "vNetSubnetName": "default",
-        "vNetSubnetAddressPrefix": "10.0.0.0/24"
+        "vNetSubnetAddressPrefix": "172.16.94.1/24"
     },
     "resources": [
         {
@@ -109,7 +109,8 @@
                     {
                         "name": "ipconfig1",
                         "properties": {
-                            "privateIPAllocationMethod": "Dynamic",                            
+                            "privateIPAllocationMethod": "Static",
+                            "privateIPAddress": "172.16.94.10",
                             "subnet": {
                                 "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('vNetName'), variables('vNetSubnetName'))]"
                             }
@@ -132,7 +133,7 @@
                 },
                 "osProfile": {
                     "computerName": "[parameters('vmName')]",
-                    "adminUsername": "Matt",
+                    "adminUsername": "admin-alain",
                     "adminPassword": "[parameters('adminPassword')]"
                 },
                 "storageProfile": {
