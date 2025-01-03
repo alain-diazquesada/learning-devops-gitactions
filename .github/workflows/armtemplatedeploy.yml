@@ -66,56 +66,56 @@ jobs:
           parameters: ./arm-templates/virtualmachine.parameters.json adminPassword=${{ secrets.UBUNTU_ADMIN_PASSWORD }}
           deploymentMode: Incremental
 
-  armDeployProduction:
-    name: Deploy to Production
-    runs-on: ubuntu-latest
-    env:
-      resourceGroupName: rg-prd-githubactions   
-      location: westeurope
-    environment:
-      name: production
-        
-    needs: armDeployStaging  
-
-    steps:
-      - uses: actions/checkout@v4
-      - name: Azure Login
-        uses: Azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Deploy Resource Group ${{ env.resourceGroupName }}
-        uses: Azure/arm-deploy@v1
-        with:
-          scope: subscription
-          subscriptionId: ${{ env.SubscriptionId }}
-          region: ${{ env.location }}
-          template: ./arm-templates/resourcegroup.json
-          parameters: >
-            location=${{ env.location}}
-            resourceGroupName=${{ env.resourceGroupName }}
-          deploymentName: ${{ env.resourceGroupName }}
-
-      #- name: Deploy Storage Account sa-githubactions
+  #armDeployProduction:
+    #name: Deploy to Production
+    #runs-on: ubuntu-latest
+    #env:
+      #resourceGroupName: rg-prd-githubactions   
+      #location: westeurope
+    #environment:
+      #name: production
+#        
+    #needs: armDeployStaging  
+#
+    #steps:
+      #- uses: actions/checkout@v4
+      #- name: Azure Login
+        #uses: Azure/login@v1
+        #with:
+          #creds: ${{ secrets.AZURE_CREDENTIALS }}
+#
+      #- name: Deploy Resource Group ${{ env.resourceGroupName }}
         #uses: Azure/arm-deploy@v1
-        #id: storageAccountDeploy
+        #with:
+          #scope: subscription
+          #subscriptionId: ${{ env.SubscriptionId }}
+          #region: ${{ env.location }}
+          #template: ./arm-templates/resourcegroup.json
+          #parameters: >
+            #location=${{ env.location}}
+            #resourceGroupName=${{ env.resourceGroupName }}
+          #deploymentName: ${{ env.resourceGroupName }}
+#
+      ##- name: Deploy Storage Account sa-githubactions
+        ##uses: Azure/arm-deploy@v1
+        ##id: storageAccountDeploy
+        ##with:
+          ##scope: resourcegroup
+          ##resourceGroupName: ${{ env.resourceGroupName }}
+          ##subscriptionId: ${{ env.SubscriptionId}}          
+          ##template: ./arm-templates/storageaccount.json
+          ##parameters: >
+            ##./arm-templates/storageaccount.parameters.json
+            ##storageAccountName=githubactionsstorage25
+            ##location=${{ env.location}}
+          ###deploymentMode:
+#            
+      #- name: Deploy Virtual Machine
+        #uses: Azure/arm-deploy@v1        
         #with:
           #scope: resourcegroup
           #resourceGroupName: ${{ env.resourceGroupName }}
           #subscriptionId: ${{ env.SubscriptionId}}          
-          #template: ./arm-templates/storageaccount.json
-          #parameters: >
-            #./arm-templates/storageaccount.parameters.json
-            #storageAccountName=githubactionsstorage25
-            #location=${{ env.location}}
-          ##deploymentMode:
-            
-      - name: Deploy Virtual Machine
-        uses: Azure/arm-deploy@v1        
-        with:
-          scope: resourcegroup
-          resourceGroupName: ${{ env.resourceGroupName }}
-          subscriptionId: ${{ env.SubscriptionId}}          
-          template: ./arm-templates/virtualmachine.json
-          parameters: ./arm-templates/virtualmachine.parameters.json adminPassword=${{ secrets.UBUNTU_ADMIN_PASSWORD }}
-          deploymentMode: Incremental        
+          #template: ./arm-templates/virtualmachine.json
+          #parameters: ./arm-templates/virtualmachine.parameters.json adminPassword=${{ secrets.UBUNTU_ADMIN_PASSWORD }}
+          #deploymentMode: Incremental        
